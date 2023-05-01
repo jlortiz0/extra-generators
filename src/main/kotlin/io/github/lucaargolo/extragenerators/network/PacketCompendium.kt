@@ -4,7 +4,6 @@ import io.github.lucaargolo.extragenerators.client.screen.*
 import io.github.lucaargolo.extragenerators.common.blockentity.FluidGeneratorBlockEntity
 import io.github.lucaargolo.extragenerators.common.blockentity.FluidItemGeneratorBlockEntity
 import io.github.lucaargolo.extragenerators.common.blockentity.ItemGeneratorBlockEntity
-import io.github.lucaargolo.extragenerators.common.entity.GeneratorAreaEffectCloudEntity
 import io.github.lucaargolo.extragenerators.common.resource.ResourceCompendium
 import io.github.lucaargolo.extragenerators.utils.FluidGeneratorFuel
 import io.github.lucaargolo.extragenerators.utils.GeneratorFuel
@@ -100,20 +99,20 @@ object PacketCompendium {
             val yaw = buf.readByte().toInt()
             val blockEntityPos = buf.readBlockPos()
 
-            client.execute {
-                val world = handler.world
-                val entity = GeneratorAreaEffectCloudEntity(world, x, y, z)
-
-                entity.updateTrackedPosition(x, y, z)
-                entity.refreshPositionAfterTeleport(x, y, z)
-                entity.pitch = (pitch * 360f) / 256.0f
-                entity.yaw = (yaw * 360f) / 256.0f
-                entity.id = id
-                entity.uuid = uuid
-                entity.blockEntityPos = blockEntityPos
-                entity.generatorBlockEntity = world.getBlockEntity(blockEntityPos) as? ItemGeneratorBlockEntity
-                world.addEntity(id, entity)
-            }
+//            client.execute {
+//                val world = handler.world
+//                val entity = GeneratorAreaEffectCloudEntity(world, x, y, z)
+//
+//                entity.updateTrackedPosition(x, y, z)
+//                entity.refreshPositionAfterTeleport(x, y, z)
+//                entity.pitch = (pitch * 360f) / 256.0f
+//                entity.yaw = (yaw * 360f) / 256.0f
+//                entity.id = id
+//                entity.uuid = uuid
+//                entity.blockEntityPos = blockEntityPos
+//                entity.generatorBlockEntity = world.getBlockEntity(blockEntityPos) as? ItemGeneratorBlockEntity
+//                world.addEntity(id, entity)
+//            }
         }
         ClientPlayNetworking.registerGlobalReceiver(SYNC_ITEM_GENERATORS) { _, _, buf, _ ->
             ResourceCompendium.ITEM_GENERATORS.fromBuf(buf)

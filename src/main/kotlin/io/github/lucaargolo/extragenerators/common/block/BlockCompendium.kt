@@ -2,7 +2,6 @@ package io.github.lucaargolo.extragenerators.common.block
 
 import io.github.lucaargolo.extragenerators.ExtraGenerators
 import io.github.lucaargolo.extragenerators.ExtraGenerators.Companion.creativeGroupSettings
-import io.github.lucaargolo.extragenerators.common.entity.GeneratorAreaEffectCloudEntity
 import io.github.lucaargolo.extragenerators.mixin.KeyBindingAccessor
 import io.github.lucaargolo.extragenerators.utils.FluidGeneratorFuel
 import io.github.lucaargolo.extragenerators.utils.GeneratorFuel
@@ -49,24 +48,15 @@ object BlockCompendium: RegistryCompendium<Block>(Registry.BLOCK) {
     val GLUTTONY_GENERATOR = register("gluttony_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.gluttonyGenerator, { GeneratorFuel.fromGluttonyGeneratorFuel(it.item) })  )
     val BREW_GENERATOR = register("brew_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.brewGenerator, { GeneratorFuel.fromBrewGeneratorFuel(it) })  )
     val REDSTONE_GENERATOR = register("redstone_generator", FluidItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.redstoneGenerator, Fluids.LAVA) { FluidGeneratorFuel.fromRedstoneGeneratorFuel(it) })
-    val BLAST_GENERATOR = register("blast_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.blastGenerator, { GeneratorFuel.fromItemResource("blast", it) }) {
-        val world = it.world as? ServerWorld ?: return@ItemGeneratorBlock
-        world.createExplosion(null, it.pos.x+0.5, it.pos.y+0.0, it.pos.z+0.5, 2f, Explosion.DestructionType.NONE)
-    } )
+    val BLAST_GENERATOR = register("blast_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.blastGenerator, { GeneratorFuel.fromItemResource("blast", it) }))
 
     //Tier 4 Generators
     val ENCHANTED_GENERATOR = register("enchanted_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.enchantedGenerator, { GeneratorFuel.fromEnchantedGeneratorFuel(it) })  )
-    val DEMISE_GENERATOR = register("demise_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.demiseGenerator, { GeneratorFuel.fromItemResource("demise", it) }) {
-        val world = it.world as? ServerWorld ?: return@ItemGeneratorBlock
-        GeneratorAreaEffectCloudEntity.createAndSpawn(world, it, StatusEffects.WEAKNESS)
-    } )
+    val DEMISE_GENERATOR = register("demise_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.demiseGenerator, { GeneratorFuel.fromItemResource("demise", it) }))
 
     //Tier 5 Generators
     val DRAGON_GENERATOR = register("dragon_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.dragonGenerator, { GeneratorFuel.fromItemResource("dragon", it) })  )
-    val WITHERED_GENERATOR = register("withered_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.witheredGenerator, { GeneratorFuel.fromItemResource("withered", it) }) {
-        val world = it.world as? ServerWorld ?: return@ItemGeneratorBlock
-        GeneratorAreaEffectCloudEntity.createAndSpawn(world, it, StatusEffects.WITHER)
-    } )
+    val WITHERED_GENERATOR = register("withered_generator", ItemGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.witheredGenerator, { GeneratorFuel.fromItemResource("withered", it) }))
 
     //Tier ∞ Generators
     val HEAVENLY_GENERATOR = register("heavenly_generator", InfiniteGeneratorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).nonOpaque(), ExtraGenerators.CONFIG.heavenlyGenerator) )

@@ -5,7 +5,6 @@ import com.google.gson.JsonParser
 import io.github.lucaargolo.extragenerators.common.block.BlockCompendium
 import io.github.lucaargolo.extragenerators.common.blockentity.BlockEntityCompendium
 import io.github.lucaargolo.extragenerators.common.containers.ScreenHandlerCompendium
-import io.github.lucaargolo.extragenerators.common.entity.EntityCompendium
 import io.github.lucaargolo.extragenerators.common.item.ItemCompendium
 import io.github.lucaargolo.extragenerators.common.resource.ResourceCompendium
 import io.github.lucaargolo.extragenerators.network.PacketCompendium
@@ -32,7 +31,6 @@ class ExtraGenerators: ModInitializer {
         PacketCompendium.onInitialize()
         BlockCompendium.initialize()
         BlockEntityCompendium.initialize()
-        EntityCompendium.initialize()
         ItemCompendium.initialize()
         ScreenHandlerCompendium.initialize()
         ResourceCompendium.initialize()

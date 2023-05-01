@@ -116,7 +116,7 @@ abstract class AbstractGeneratorBlockEntity<B: AbstractGeneratorBlockEntity<B>>(
                 cogWheelRotationDegree %= 360f
                 lastCogWheelRotationDegree -= 360f
             }
-            world?.addParticle(ParticleTypes.SMOKE, pos.x+0.5, pos.y+0.825, pos.z+0.5, 0.0, 0.1, 0.0)
+            // world?.addParticle(ParticleTypes.SMOKE, pos.x+0.5, pos.y+0.825, pos.z+0.5, 0.0, 0.1, 0.0)
         }
 
         //If generator is on server move energy and if its running add it to active generators

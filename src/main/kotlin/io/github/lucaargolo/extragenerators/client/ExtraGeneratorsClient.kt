@@ -1,7 +1,6 @@
 package io.github.lucaargolo.extragenerators.client
 
 import io.github.lucaargolo.extragenerators.client.render.blockentity.BlockEntityRendererCompendium
-import io.github.lucaargolo.extragenerators.client.render.entity.EntityRendererCompendium
 import io.github.lucaargolo.extragenerators.common.block.BlockCompendium
 import io.github.lucaargolo.extragenerators.common.containers.ScreenHandlerCompendium
 import io.github.lucaargolo.extragenerators.network.PacketCompendium
@@ -20,7 +19,6 @@ class ExtraGeneratorsClient: ClientModInitializer {
         PacketCompendium.onInitializeClient()
         ScreenHandlerCompendium.onInitializeClient()
         BlockEntityRendererCompendium.initialize()
-        EntityRendererCompendium.initialize()
 
         ClientPlayConnectionEvents.JOIN.register{ handler, _, _ ->
             handler.sendPacket(ClientPlayNetworking.createC2SPacket(PacketCompendium.REQUEST_RESOURCES, PacketByteBufs.create()))
